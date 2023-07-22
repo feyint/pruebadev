@@ -30,7 +30,7 @@ Prueba del API:
 --------------
 
 Swagger UI
-Una vez que la aplicación está en ejecución, puedes navegar a http://localhost:8003/doc/swagger-ui.html para ver y probar los endpoints del API a través de Swagger UI.
+Una vez que la aplicación está en ejecución, puedes navegar a http://localhost:8003/swagger-ui.html para ver y probar los endpoints del API a través de Swagger UI.
 
 Endpoints
 Descripción de los endpoints principales:
