@@ -4,10 +4,9 @@
  */
 package com.nisum.pruebadev.entity;
 
-import com.nisum.pruebadev.validation.ValidEmail;
-import com.nisum.pruebadev.validation.ValidPassword;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -15,7 +14,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -37,21 +35,13 @@ public class Usuario {
     @Schema(description = "Nombre del usuario", example = "Juan")
     private String name;
     
-    
-    //@ValidEmail
     @Schema(description = "Email del usuario", example = "Juan@gmail.com")
+    @Column(unique = true)
     private String email;
 
-    //@ValidPassword
     @Schema(description = "Password del usuario", example = "Clave123!*")
     private String password;
-    
-//    @Pattern(regexp = "${app.validation.email}", message = "Invalid email")
-//    private String email;
-//    
-//    @Pattern(regexp = "${app.validation.password}", message = "Invalid password")
-//    private String password;
-//    
+
         
     private LocalDateTime created;
     private LocalDateTime modified;
@@ -140,9 +130,5 @@ public class Usuario {
 
     public void setPhones(List<Telefono> phones) {
         this.phones = phones;
-    }
-    
-    
-    
-    
+    }         
 }

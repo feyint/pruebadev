@@ -11,7 +11,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 /**
@@ -24,16 +26,19 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
 
     public Usuario createUser(Usuario usuario) {
-        if (usuarioRepository.findByEmail(usuario.getEmail()).isPresent()) {
-            throw new EmailAlreadyRegisteredException("El correo ya registrado");
-        }
-
+//        if (usuarioRepository.findByEmail(usuario.getEmail()).isPresent()) {
+//            throw new EmailAlreadyRegisteredException("El correo ya registrado");        }
+ 
         usuario.setCreated(LocalDateTime.now().now());
         usuario.setLastLogin(LocalDateTime.now());
         usuario.setToken(UUID.randomUUID().toString());
         usuario.setIsActive(true);
-
-        return usuarioRepository.save(usuario);
+               
+        try{       
+            return usuarioRepository.save(usuario);
+        } catch(DataIntegrityViolationException ex){
+            throw new EmailAlreadyRegisteredException("El correo ya existe en la base de datos");
+        }            
     }
 
     public List<Usuario> getAllUsers() {

@@ -25,7 +25,8 @@
         <dependency>        
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <scope>runtime</scope>
+            <version>2.1.214</version>
+            <type>jar</type>
         </dependency>
 
         <dependency>
@@ -91,6 +92,13 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
             <version>3.0.0</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
             <type>jar</type>
         </dependency>
     </dependencies>
